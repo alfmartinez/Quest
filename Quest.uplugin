@@ -3,15 +3,14 @@
 	"Version": 1,
 	"VersionName": "1.0",
 	"FriendlyName": "Quest",
-	"Description": "",
-	"Category": "Game Features",
-	"CreatedBy": "",
-	"CreatedByURL": "",
-	"DocsURL": "",
+	"Description": "Quests as AsyncActions",
+	"Category": "Gameplay",
+	"CreatedByURL": "https://github.com/alfmartinez/Quest/graphs/contributors",
+	"DocsURL": "https://github.com/alfmartinez/Quest/wiki",
 	"MarketplaceURL": "",
-	"SupportURL": "",
-	"EnabledByDefault": false,
-	"CanContainContent": true,
+	"SupportURL": "https://github.com/alfmartinez/Quest/issues",
+	"EnabledByDefault": true,
+	"CanContainContent": false,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
@@ -19,9 +18,7 @@
 		{
 			"Name": "QuestRuntime",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "PreDefault"
 		}
-	],
-	"ExplicitlyLoaded": true,
-	"BuiltInInitialFeatureState": "Active"
+	]
 }
