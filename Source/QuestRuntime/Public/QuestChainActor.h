@@ -29,6 +29,10 @@ public:
 	void Complete();
 	virtual void Complete_Implementation();
 
+public: 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Quest Chain")
+	FText QuestChainTitle;
+
 
 public:
 	UPROPERTY(BlueprintAssignable, EditDefaultsOnly, Category = "Quest Chain Actor")
