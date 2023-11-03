@@ -3,7 +3,7 @@
 
 #include "Goal.h"
 
-UGoal* UGoal::CreateGoal(const UObject* WorldContext, UGoal* InGoal)
+UQuestGoal* UQuestGoal::CreateGoal(const UObject* WorldContext, UQuestGoal* InGoal)
 {
 
     UWorld* ContextWorld = GEngine->GetWorldFromContextObject(WorldContext, EGetWorldErrorMode::ReturnNull);
@@ -17,45 +17,45 @@ UGoal* UGoal::CreateGoal(const UObject* WorldContext, UGoal* InGoal)
     return InGoal;
 }
 
-void UGoal::Start_Implementation()
+void UQuestGoal::Start_Implementation()
 {
     OnGoalStarted.Broadcast();
 }
 
-void UGoal::Abort_Implementation()
+void UQuestGoal::Abort_Implementation()
 {
     OnGoalAborted.Broadcast();
     Cancel();
 }
 
-void UGoal::Fail_Implementation()
+void UQuestGoal::Fail_Implementation()
 {
     OnGoalFailed.Broadcast();
     Cancel();
 }
 
-void UGoal::Complete_Implementation()
+void UQuestGoal::Complete_Implementation()
 {
     OnGoalCompleted.Broadcast();
     Cancel();
 }
 
-FText UGoal::GetDescription_Implementation() const
+FText UQuestGoal::GetDescription_Implementation() const
 {
     return FText();
 }
 
-void UGoal::Update()
+void UQuestGoal::Update()
 {
     OnGoalUpdated.Broadcast();
 }
 
-void UGoal::Activate()
+void UQuestGoal::Activate()
 {
     Start();
 }
 
-void UGoal::Cancel()
+void UQuestGoal::Cancel()
 {
     Super::Cancel();
 }
