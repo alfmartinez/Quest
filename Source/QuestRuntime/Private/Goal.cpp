@@ -2,6 +2,7 @@
 
 
 #include "Goal.h"
+#include "QuestManagerSubsystem.h"
 
 UQuestGoal* UQuestGoal::CreateGoal(const UObject* WorldContext, UQuestGoal* InGoal)
 {
@@ -12,8 +13,12 @@ UQuestGoal* UQuestGoal::CreateGoal(const UObject* WorldContext, UQuestGoal* InGo
     	return nullptr;
     }
 
+    UGameInstance* GameInstance = ContextWorld->GetGameInstance();
+    UQuestManagerSubsystem* QuestManager = GameInstance->GetSubsystem<UQuestManagerSubsystem>();
+
     InGoal->ContextWorld = ContextWorld;
-    InGoal->RegisterWithGameInstance(ContextWorld->GetGameInstance());
+    InGoal->RegisterWithGameInstance(GameInstance);
+    QuestManager->RegisterQuestGoal(InGoal);
     return InGoal;
 }
 
