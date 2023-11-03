@@ -39,6 +39,9 @@ public:
 	UFUNCTION(BlueprintCallable, DisplayName="Start Goal", meta=(WorldContext="WorldContext", BlueprintInternalUseOnly="true"))
 	static UQuestGoal* CreateGoal(const UObject* WorldContext, UQuestGoal* InGoal);
 
+	FText GetChainTitle() const {
+		return QuestChainTitle;
+	}
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void Start();
