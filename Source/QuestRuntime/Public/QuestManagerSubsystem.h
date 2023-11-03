@@ -7,6 +7,10 @@
 #include "Goal.h"
 #include "QuestManagerSubsystem.generated.h"
 
+
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnQuestGoalRegistered, UQuestGoal*, QuestGoal);
+
 /**
  * 
  */
@@ -27,4 +31,8 @@ public:
 
 private:
 	TArray<UQuestGoal*> Goals;
+
+public:
+	UPROPERTY(BlueprintAssignable)
+	FOnQuestGoalRegistered OnQuestGoalRegistered;
 };

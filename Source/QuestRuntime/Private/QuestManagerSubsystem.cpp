@@ -6,6 +6,7 @@
 void UQuestManagerSubsystem::RegisterQuestGoal(UQuestGoal* Goal)
 {
 	Goals.Add(Goal);
+	OnQuestGoalRegistered.Broadcast(Goal);
 }
 
 void UQuestManagerSubsystem::UnregisterQuestGoal(UQuestGoal* Goal)

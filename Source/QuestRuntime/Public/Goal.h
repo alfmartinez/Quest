@@ -7,7 +7,21 @@
 #include "Engine/CancellableAsyncAction.h"
 #include "Goal.generated.h"
 
+
+
+UENUM(BlueprintType)
+enum class EQuestStatus : uint8
+{
+	PENDING			UMETA(DisplayName = "Pending"),
+	STARTED			UMETA(DisplayName = "Started"),
+	COMPLETED		UMETA(DisplayName = "Completed"),
+	ABORTED			UMETA(DisplayName = "Aborted"),
+	FAILED			UMETA(DisplayName = "Failed")
+};
+
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGoalDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGoalUpdated, EQuestStatus, Status);
 
 /**
  * 
@@ -52,6 +66,14 @@ public:
 	virtual void Activate() override;
 	virtual void Cancel() override;
 
+
+public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Quest Chain", meta = (ExposeOnSpawn = "true"))
+	FText QuestChainTitle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Goal")
+	EQuestStatus Status = EQuestStatus::PENDING;
+
 public:
 	UPROPERTY(BlueprintAssignable)
 	FOnGoalDelegate OnGoalStarted;
@@ -66,7 +88,7 @@ public:
 	FOnGoalDelegate OnGoalAborted;
 
 	UPROPERTY(BlueprintAssignable)
-	FOnGoalDelegate OnGoalUpdated;
+	FOnGoalUpdated OnGoalUpdated;
 
 	/** The context world of this action. */
     TWeakObjectPtr<UWorld> ContextWorld = nullptr;

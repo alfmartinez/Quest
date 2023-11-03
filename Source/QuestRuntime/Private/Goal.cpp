@@ -24,23 +24,31 @@ UQuestGoal* UQuestGoal::CreateGoal(const UObject* WorldContext, UQuestGoal* InGo
 
 void UQuestGoal::Start_Implementation()
 {
+    Status = EQuestStatus::PENDING;
+    OnGoalUpdated.Broadcast(Status);
     OnGoalStarted.Broadcast();
 }
 
 void UQuestGoal::Abort_Implementation()
 {
+    Status = EQuestStatus::ABORTED;
+    OnGoalUpdated.Broadcast(Status);
     OnGoalAborted.Broadcast();
     Cancel();
 }
 
 void UQuestGoal::Fail_Implementation()
 {
+    Status = EQuestStatus::ABORTED;
+    OnGoalUpdated.Broadcast(Status);
     OnGoalFailed.Broadcast();
     Cancel();
 }
 
 void UQuestGoal::Complete_Implementation()
 {
+    Status = EQuestStatus::COMPLETED;
+    OnGoalUpdated.Broadcast(Status); 
     OnGoalCompleted.Broadcast();
     Cancel();
 }
@@ -52,7 +60,7 @@ FText UQuestGoal::GetDescription_Implementation() const
 
 void UQuestGoal::Update()
 {
-    OnGoalUpdated.Broadcast();
+    OnGoalUpdated.Broadcast(Status);
 }
 
 void UQuestGoal::Activate()
