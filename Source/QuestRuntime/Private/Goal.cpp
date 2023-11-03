@@ -13,6 +13,11 @@ UQuestGoal* UQuestGoal::CreateGoal(const UObject* WorldContext, UQuestGoal* InGo
     	return nullptr;
     }
 
+    if (!ensureAlwaysMsgf(IsValid(InGoal), TEXT("Goal was not valid.")))
+    {
+        return nullptr;
+    }
+
     UGameInstance* GameInstance = ContextWorld->GetGameInstance();
     UQuestManagerSubsystem* QuestManager = GameInstance->GetSubsystem<UQuestManagerSubsystem>();
 
