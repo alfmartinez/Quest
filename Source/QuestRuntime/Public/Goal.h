@@ -13,7 +13,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGoalDelegate);
  * 
  */
 UCLASS(Blueprintable)
-class QUESTRUNTIME_API UGoal : public UCancellableAsyncAction
+class QUESTRUNTIME_API UQuestGoal : public UCancellableAsyncAction
 {
 
 public:
@@ -23,7 +23,7 @@ public:
 public:
 
 	UFUNCTION(BlueprintCallable, DisplayName="Start Goal", meta=(WorldContext="WorldContext", BlueprintInternalUseOnly="true"))
-	static UGoal* CreateGoal(const UObject* WorldContext, UGoal* InGoal);
+	static UQuestGoal* CreateGoal(const UObject* WorldContext, UQuestGoal* InGoal);
 
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
