@@ -29,7 +29,7 @@ UQuestGoal* UQuestGoal::CreateGoal(const UObject* WorldContext, UQuestGoal* InGo
 
 void UQuestGoal::Start_Implementation()
 {
-    Status = EQuestStatus::PENDING;
+    Status = EQuestStatus::STARTED;
     OnGoalUpdated.Broadcast(Status);
     OnGoalStarted.Broadcast();
 }
@@ -44,7 +44,7 @@ void UQuestGoal::Abort_Implementation()
 
 void UQuestGoal::Fail_Implementation()
 {
-    Status = EQuestStatus::ABORTED;
+    Status = EQuestStatus::FAILED;
     OnGoalUpdated.Broadcast(Status);
     OnGoalFailed.Broadcast();
     Cancel();
