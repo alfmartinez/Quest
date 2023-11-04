@@ -2,6 +2,7 @@
 
 
 #include "QuestChainActor.h"
+#include "QuestManagerSubsystem.h"
 
 // Sets default values
 AQuestChainActor::AQuestChainActor()
@@ -24,5 +25,9 @@ void AQuestChainActor::Abort_Implementation()
 void AQuestChainActor::Complete_Implementation()
 {
 	OnQuestChainCompleted.Broadcast();
+
+	UGameInstance* GameInstance = GetGameInstance();
+	UQuestManagerSubsystem* QuestManager = GameInstance->GetSubsystem<UQuestManagerSubsystem>();
+	QuestManager->FlushQuestChain(QuestChainTitle);
 }
 
