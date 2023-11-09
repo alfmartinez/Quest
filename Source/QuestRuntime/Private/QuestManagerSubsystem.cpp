@@ -16,13 +16,9 @@ void UQuestManagerSubsystem::UnregisterQuestGoal(UQuestGoal* Goal)
 
 void UQuestManagerSubsystem::FlushQuestChain(const FText QuestChainTitle)
 {
-	for (UQuestGoal* Goal : Goals)
-	{
-		if (QuestChainTitle.IdenticalTo(Goal->GetChainTitle()))
-		{
-			UnregisterQuestGoal(Goal);
-		}
-	}
+	Goals.RemoveAll([&](UQuestGoal* Goal) {
+		return QuestChainTitle.IdenticalTo(Goal->GetChainTitle());
+	});
 	OnQuestChainFlushed.Broadcast(QuestChainTitle);
 }
 
